@@ -1,0 +1,110 @@
+networks:
+  web_lab4:
+
+services:
+  db-auth:
+    image: postgres:17
+    container_name: db-auth
+    env_file:
+      - backend/auth-service/.env
+    networks:
+      - web_lab4
+    ports:
+      - "5433:5432"
+
+  db-geometry:
+    image: postgres:17
+    container_name: db-geometry
+    env_file:
+      - backend/geometry-service/.env
+    networks:
+      - web_lab4
+    ports:
+      - "5434:5432"
+
+  db-history:
+    image: postgres:17
+    container_name: db-history
+    env_file:
+      - backend/history-service/.env
+    networks:
+      - web_lab4
+    ports:
+      - "5435:5432"
+
+  auth:
+    build:
+      context: backend/auth-service
+      dockerfile: Dockerfile
+    env_file:
+      - backend/auth-service/.env
+    networks:
+      - web_lab4
+    ports:
+      - "9004:8080"
+
+  geometry:
+    build:
+      context: backend/geometry-service
+      dockerfile: Dockerfile
+    env_file:
+      - backend/geometry-service/.env
+    networks:
+      - web_lab4
+    ports:
+      - "9005:8080"
+
+  history:
+    build:
+      context: backend/history-service
+      dockerfile: Dockerfile
+    env_file:
+      - backend/history-service/.env
+    networks:
+      - web_lab4
+    ports:
+      - "9006:8080"
+
+  shared:
+    build:
+      context: frontend/shared
+      dockerfile: Dockerfile
+    networks:
+      - web_lab4
+    ports:
+      - "9001:80"
+
+  input-app:
+    build:
+      context: frontend/input-app
+      dockerfile: Dockerfile
+    networks:
+      - web_lab4
+    ports:
+      - "9002:80"
+    depends_on:
+      - shared
+
+  result-app:
+    build:
+      context: frontend/result-app
+      dockerfile: Dockerfile
+    networks:
+      - web_lab4
+    ports:
+      - "9003:80"
+    depends_on:
+      - shared
+
+  host-app:
+    build:
+      context: frontend/host-app
+      dockerfile: Dockerfile
+    networks:
+      - web_lab4
+    ports:
+      - "9000:80"
+    depends_on:
+      - shared
+
+
