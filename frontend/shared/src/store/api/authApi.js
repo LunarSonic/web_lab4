@@ -1,5 +1,6 @@
 import {apiSlice} from "../slice/apiSlice";
 import {loginUser, logoutUser} from "../slice/authSlice";
+import {setRValue} from "../slice/rSlice";
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (build) => ({
@@ -35,7 +36,8 @@ export const authApi = apiSlice.injectEndpoints({
                     url: "/auth/logout",
                     method: "POST"
                 });
-                dispatch(logoutUser())
+                dispatch(logoutUser());
+                dispatch(setRValue(null))
                 dispatch(apiSlice.util.resetApiState());
                 return result;
             }

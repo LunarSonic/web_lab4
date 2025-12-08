@@ -80,12 +80,12 @@ export function Canvas({points, r, formHandlers}) {
 
     return (
         <div id="main_canvas">
-            <canvas ref={canvasRef} width="400" height="400" onClick={sendCanvasClick}></canvas>
             <div className="error_container">
                 {errorMessage && (
                     <div id="canvas_error" className={`error_base ${showError ? 'show' : ''}`}> {errorMessage} </div>
                 )}
             </div>
+            <canvas ref={canvasRef} width="400" height="400" onClick={sendCanvasClick}></canvas>
         </div>
     );
 }

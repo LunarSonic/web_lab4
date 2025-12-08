@@ -38,7 +38,7 @@ export function GroupsPanel() {
         const groupId = active?.id;
         if (groupId) {
             try {
-                await deleteGroup(active.id);
+                await deleteGroup(active.id).unwrap();
             } catch (error) {
                 console.error("Ошибка при удалениии группы: ", error);
             }
