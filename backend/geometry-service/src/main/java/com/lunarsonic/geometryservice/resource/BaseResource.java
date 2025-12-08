@@ -6,7 +6,7 @@ import jakarta.ws.rs.core.SecurityContext;
 public abstract class BaseResource {
 
     @Context
-    protected SecurityContext securityContext;
+    private SecurityContext securityContext;
 
     protected Long getUserId() {
         UserPrincipal userPrincipal = (UserPrincipal) securityContext.getUserPrincipal();

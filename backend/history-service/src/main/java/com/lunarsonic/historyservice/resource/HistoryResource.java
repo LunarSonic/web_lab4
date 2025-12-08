@@ -36,7 +36,7 @@ public class HistoryResource {
         Long userId = userPrincipal.getUserId();
         logger.info("Получение истории пользователя с id=" + userId);
         List<HistoryMessage> records = historyService.getHistoryMessages(userId);
-        logger.info("У пользователя с id=" + userId + " найдено " + records.size() + " записей в истории");
+        logger.info("У пользователя с id=" + userId + " кол-во записей в истории: " + records.size());
         return Response.ok(records).build();
     }
 }

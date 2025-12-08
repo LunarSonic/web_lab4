@@ -32,7 +32,7 @@ public class AuthResource {
     @Path("/login")
     public Response login(AuthRequest request) {
         AuthService.Tokens tokens = authService.login(request.username(), request.password());
-        logger.info("Пользователь зашёл в систему: " + request.username());
+        logger.info("Пользователь " + request.username() + " зашел в систему");
         NewCookie newCookie = new NewCookie.Builder("refreshToken")
                 .value(tokens.refreshToken())
                 .path("/api")

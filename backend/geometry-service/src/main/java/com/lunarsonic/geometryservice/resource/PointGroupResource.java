@@ -35,7 +35,7 @@ public class PointGroupResource extends BaseResource {
         Long userId = getUserId();
         logger.info("Получение групп пользователя с id=" + userId);
         List<PointGroup> pointGroupList = pointGroupService.getAllGroups(userId);
-        logger.info("Найдено " + pointGroupList.size() + " групп");
+        logger.info("Кол-во групп: " + pointGroupList.size());
         List<GroupResponse> groupResponses = pointGroupList.stream()
                 .map(pointGroup -> new GroupResponse(pointGroup.getId(), pointGroup.getName(), pointGroup.getIsActive()))
                 .collect(Collectors.toList());

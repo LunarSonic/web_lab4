@@ -22,7 +22,7 @@ public class PointResource extends BaseResource {
     public Response addPoint(PointData pointData) {
         Long userId = getUserId();
         String token = getToken();
-        logger.info("Добавляется точка у userId=" + userId
+        logger.info("Добавляется точка у пользователя с id=" + userId
                 + " x=" + pointData.getX()
                 + " y=" + pointData.getY()
                 + " r=" + pointData.getR());
@@ -35,7 +35,7 @@ public class PointResource extends BaseResource {
     public Response getPoints() {
         Long userId = getUserId();
         List<Point> points = pointService.getPoints(userId);
-        logger.info("У пользователя с id=" + userId + " найдено " + points.size() + " точек");
+            logger.info("У пользователя с id=" + userId + " кол-во точек: " + points.size());
         return Response.ok(points).build();
     }
 }
