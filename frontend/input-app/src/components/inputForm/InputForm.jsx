@@ -52,7 +52,7 @@ export function InputForm() {
         if (r != null) {
             dispatch(setRValue(r));
         }
-    }, [r, dispatch]);
+    }, [r]);
 
     const onSubmit = async (data) => {
         setErrorMessage("")
